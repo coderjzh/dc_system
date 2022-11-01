@@ -52,6 +52,8 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- 二维码识别API -->
+
     </dependencies>
 
     <dependencyManagement>
