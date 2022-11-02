@@ -13,13 +13,13 @@ git: 2.35.1
 ### 2.框架选型
 
 后端框架：SpringBoot 2.3.7  
-后端持久框架：Mybatis
+后端持久框架：Mybatis Plus
 前端框架：Vue 3  
 前端UI框架：Vant UI
 
 ## 二. 设计：
 
-### 功能设计：
+### 1.功能设计：
 
 #### 采集人员APP：
 
@@ -31,20 +31,37 @@ git: 2.35.1
 
 #### 转运人员APP(可选):
 
+
+
 #### 检测机构(可选)：
 
 #### 城市运营端(可选)：
 
-### 数据库设计：
+### 2.数据库设计：
 
-采集人员表： ID，姓名，身份证，手机号，地区。  
-被采集人员表：ID，姓名，身份证，手机号。  
-转运箱表：ID，转运箱码，日期。  
-试管表：ID，试管码，转运箱码，日期，状态。  
-转运箱试管关联表：ID，转运箱号，试管号。  
-试管被采集人员关联表：ID，试管号，人员ID。
+采集人员表:ID，姓名，身份证，手机号，地区。
+被采集人员表:ID，姓名，身份证，手机号。  
+转运箱表:ID，转运箱码，日期。  
+试管表:ID，试管码，日期，状态。  
+转运箱试管关联表:ID，转运箱号，试管号。  
+试管被采集人员关联表:ID，试管号，人员ID。
+核酸结果表:ID，试管号，核算结果状态。
 
-核酸结果表(可选)
+collector: id,name,idNumber,phoneNumber,district  
+person:id,name,idNumber,phoneNumber,personId  
+case：id,caseId,openDate,caseState   
+tube:id,tubeId,openDate,tubeState  
+case_tube_relation:id,caseId,tubeId  
+tube_person_relation:id,tubeId,personId  
+result: id,tubeId,resState
+
+
+
+### 3.代码规范：
+
+类名采用 UpperCamelCase 风格 exp:UserMapper，UserController。
+方法名，参数名，变量名采用 lowerCamelCase 风格 exp:getUser(),boxId。
+为了达到代码自解释的目标，任何自定义编程元素在命名时，使用尽量完整的单词 组合来表达其意。
 
 ## 三.实现
 
