@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-
 /**
  * @Author: zjt
  * @Date: 2022-11-03 13:17
@@ -26,8 +25,7 @@ public class CollectorServiceImpl implements ICollectorService {
         int num = collectorDao.registerCollector(collector);
         if (num != 0){
             return num;
-        }
-        else{
+        } else{
             throw new BusinessException("添加检测人员信息失败", CodeEnum.BUSINESS_ERROR);
         }
     }

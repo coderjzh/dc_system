@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dc_system.dao.CollectorDao">
+
+    <!--检测人员注册-->
+    <insert id="registerCollector" parameterType="Collector" useGeneratedKeys="true" keyProperty="collectorId">
+        insert into collector values(null , #{tel} ,#{name}  ,#{password} ,#{organizationId} ,#{idCard} ,#{registerTime} )
+    </insert>
+    <!--检测人员登录-->
+    <select id="loginCollector" resultType="Collector">
+        select * from collector
+        where tel = #{tel} and password =#{password}
+    </select>
+    <!--获取所有的检测人员信息-->
+    <select id="getAllCollector" resultType="Collector">
+        select * from collector
+    </select>
+    <!--通过id获取检测人员信息-->
+    <select id="getCollectorById" resultType="Collector" parameterType="integer">
+        select * from collector where collectorId = #{collectorId}
+    </select>
+    <!--通过id删除检测人员信息-->
+    <delete id="deleteCollector" parameterType="integer">
+        delete  from collector where collectorId = #{collectorId}
+    </delete>
+    <!--通过id修改检测人员信息-->
+    <update id="updateCollector" parameterType="Collector">
+        update collector set
+        idCard = #{idCard},name = #{name},tel = #{tel} ,
+        organizationId = #{organizationId} ,password = #{password} ,registerTime = #{registerTime}
+        where collectorId = #{collectorId}
+    </update>
+</mapper>
