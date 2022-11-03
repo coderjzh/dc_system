@@ -60,7 +60,19 @@ tube_person_relation:tubeId,personId
 ### 1.后端项目结构
 
 #### 后端接口：
+1.采集人员相关接口：
 
+（1）查询采集人员相关信息：http://localhost:8081/collector/getAllCollector.do
+
+（2）采集人员注册：http://localhost:8081/collector/register.do
+
+（3）采集人员登录：http://localhost:8081/collector/login.do
+
+（4）获取采人员集单条信息：http://localhost:8081/collector/getCollectorById.do
+
+（5）删除采集人员信息：http://localhost:8081/collector/deleteCollector.do
+
+（6）更新采集人员信息：http://localhost:8081/collector/updateCollector.do
 ##### 采集人员端
 
 登录结果 登录接口(Collector collector(手机号 密码))   
