@@ -31,31 +31,23 @@ git: 2.35.1
 
 #### 转运人员APP(可选):
 
-
-
 #### 检测机构(可选)：
 
 #### 城市运营端(可选)：
 
 ### 2.数据库设计：
 
-采集人员表:ID，姓名，身份证，手机号，地区。
-被采集人员表:ID，姓名，身份证，手机号。  
-转运箱表:ID，转运箱码，日期。  
-试管表:ID，试管码，日期，状态。  
-转运箱试管关联表:ID，转运箱号，试管号。  
-试管被采集人员关联表:ID，试管号，人员ID。
-核酸结果表:ID，试管号，核算结果状态。
+采集人员表:采集者ID，姓名，身份证，手机号，地区。
+被采集人员表:人员ID，姓名，身份证，手机号。  
+转运箱表:转运箱码，日期，转运箱状态  
+试管表:试管码，日期，状态，转运箱码。   
+试管被采集人员关联表:试管号，人员ID。
 
-collector: id,name,idNumber,phoneNumber,district  
-person:id,name,idNumber,phoneNumber,personId  
-case：id,caseId,openDate,caseState   
-tube:id,tubeId,openDate,tubeState  
-case_tube_relation:id,caseId,tubeId  
-tube_person_relation:id,tubeId,personId  
-result: id,tubeId,resState
-
-
+collector: collectorId,name,idNumber,phoneNumber,district  
+person:personId,name,idNumber,phoneNumber  
+case：caseId,openDate,caseState   
+tube:tubeId,openDate,tubeState,caseId   
+tube_person_relation:tubeId,personId
 
 ### 3.代码规范：
 
@@ -66,6 +58,17 @@ result: id,tubeId,resState
 ## 三.实现
 
 ### 1.后端项目结构
+
+#### 后端接口：
+
+##### 采集人员端
+
+登录结果 登录接口(Collector collector(手机号 密码))   
+注册结果 注册接口(Collector collector(手机号 密码 姓名 身份证 地区代码))  
+开启结果 开箱接口(Case case(转运箱号，开箱时间，转运箱状态(默认0)))  
+数量 获取当前转运箱中试管数()  
+开管结果 开管接口(Tube tube(试管号 开管日期 试管状态(默认0) 转运箱号))
+
 
 ### 2.前端项目结构
 
