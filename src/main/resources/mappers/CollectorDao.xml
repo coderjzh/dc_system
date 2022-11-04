@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--suppress SqlResolve -->
 <mapper namespace="com.java.dc_system.dao.CollectorDao">
 
     <!--检测人员注册-->
