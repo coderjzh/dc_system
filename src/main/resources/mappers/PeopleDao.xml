@@ -6,14 +6,25 @@
         select * from people
     </select>
     <!--通过Id获取被检测人员信息-->
-    <select id="getOnePeople" resultType="People">
-        select * from people where peopleId = #{peopleId}
+    <select id="getOnePeople" resultType="People" parameterType="People">
+        select * from people
+        <where>
+            <if test="tel != null and tel != '' ">
+                tel = #{tel}
+            </if>
+            <if test="idCard != null and idCard != '' ">
+                and idCard = #{idCard}
+            </if>
+            <if test="peopleId != null and peopleId != '' ">
+                and peopleId = #{peopleId}
+            </if>
+        </where>
     </select>
     <!--通过Id修改更改被检测人员信息-->
-    <update id="updatePeople">
+    <update id="updatePeople" parameterType="People">
         update people
         <set>
-            <if test="idCard != null and idCard != ''">
+            <if test="name != null and name != ''">
                 name = #{name},
             </if>
             <if test="tel != null and tel != ''">
@@ -22,7 +33,7 @@
             <if test="idCardType != null and idCardType != ''">
                 idCardType = #{idCardType},
             </if>
-            <if test="createTime != null and createTime != ''">
+            <if test="createTime != null ">
                 createTime = #{createTime}
             </if>
         </set>
@@ -39,6 +50,14 @@
     </insert>
     <!--被检测人员登录-->
     <select id="loginPeople" resultType="People">
-        select * from people where idCard = #{idCard} and tel = #{tel}
+        select * from people
+        <where>
+            <if test="idCard != null and idCard != ''">
+                idCard = #{idCard}
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel = #{tel}
+            </if>
+        </where>
     </select>
 </mapper>

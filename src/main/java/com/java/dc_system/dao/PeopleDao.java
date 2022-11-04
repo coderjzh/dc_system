@@ -16,7 +16,7 @@ public interface PeopleDao {
     //查询全部被检测人员
     List<People> getAllPeople();
     //通过Id查询被检测人员
-    People getOnePeople(@Param("peopleId")Integer peopleId);
+    People getOnePeople(People model);
     //通过Id修改被检测人员信息
     int updatePeople(People model);
     //通过Id删除被检测人员信息

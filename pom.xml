@@ -54,6 +54,12 @@
         </dependency>
         <!-- 二维码识别API -->
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -85,6 +91,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
                     <mainClass>com.java.dc_system.DcSystemApplication</mainClass>
                 </configuration>
                 <executions>

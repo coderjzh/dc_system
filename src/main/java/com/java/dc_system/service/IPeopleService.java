@@ -18,7 +18,7 @@ public interface IPeopleService {
     //查询全部被检测人员
     List<People> getAllPeople() throws BusinessException;
     //通过Id查询被检测人员
-    People getOnePeople(@Param("peopleId")Integer peopleId) throws BusinessException;
+    People getOnePeople(People model) throws BusinessException;
     //通过Id修改被检测人员信息
     int updatePeople(People model) throws BusinessException;
     //通过Id删除被检测人员信息
@@ -26,5 +26,5 @@ public interface IPeopleService {
     //被检测人员注册
     int registerPeople(People model) throws BusinessException;
     //被检测人员登录
-    People loginPeople(@Param("idCard")String idCard,@Param("tel")String tel);
+    People loginPeople(@Param("idCard")String idCard,@Param("tel")String tel) throws BusinessException;
 }

@@ -30,8 +30,8 @@ public class PeopleServiceImpl implements IPeopleService {
     }
 
     @Override
-    public People getOnePeople(Integer peopleId) throws BusinessException {
-        People people = peopleDao.getOnePeople(peopleId);
+    public People getOnePeople(People model) throws BusinessException {
+        People people = peopleDao.getOnePeople(model);
         if (people != null){
             return people;
         } else{
@@ -45,7 +45,7 @@ public class PeopleServiceImpl implements IPeopleService {
         if (num != 0){
             return num;
         } else{
-            throw new BusinessException("没有获取到检测人员信息", CodeEnum.BUSINESS_ERROR);
+            throw new BusinessException("没有更新检测人员信息", CodeEnum.BUSINESS_ERROR);
         }
     }
 
@@ -55,7 +55,7 @@ public class PeopleServiceImpl implements IPeopleService {
         if (num != 0){
             return num;
         } else{
-            throw new BusinessException("没有删除检测人员信息", CodeEnum.BUSINESS_ERROR);
+            throw new BusinessException("没有删除被检测人员信息", CodeEnum.BUSINESS_ERROR);
         }
     }
 
@@ -65,12 +65,17 @@ public class PeopleServiceImpl implements IPeopleService {
         if (num != 0){
             return num;
         } else{
-            throw new BusinessException("没有获取到检测人员信息", CodeEnum.BUSINESS_ERROR);
+            throw new BusinessException("被检测人员信息没有注册", CodeEnum.BUSINESS_ERROR);
         }
     }
 
     @Override
-    public People loginPeople(String idCard, String tel) {
-        return null;
+    public People loginPeople(String idCard, String tel) throws BusinessException {
+        People people = peopleDao.loginPeople(idCard, tel);
+        if (people != null){
+            return people;
+        } else{
+            throw new BusinessException("被检测人员没有登录", CodeEnum.LOGIN_FAILED);
+        }
     }
 }
