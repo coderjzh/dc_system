@@ -49,6 +49,7 @@
         #{idCard} ,#{tel} ,#{createTime})
     </insert>
     <!--被检测人员登录-->
+    <!--被检测人员的注册验证-->
     <select id="loginPeople" resultType="People">
         select * from people
         <where>
