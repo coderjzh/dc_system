@@ -26,14 +26,20 @@ public class CollectorController {
 
     @Autowired
     private ICollectorService collectorService;
-    @PostMapping("/register.do")
+    @PostMapping("/registerCollector.do")
     public ResultModel<Integer> registerCollector(@RequestBody Collector model) throws BusinessException {
-        Integer num =  collectorService.registerCollector(model);
-        return new ResultModel<>(CodeEnum.SUCCESS, "注册成功", num, true);
+        Collector collector = collectorService.loginCollector(model.getIdCard(),model.getTel(),null);
+        if (collector == null){
+            Integer num =  collectorService.registerCollector(model);
+            return new ResultModel<>(CodeEnum.SUCCESS, "注册成功", num, true);
+        }else {
+            return new ResultModel<>(CodeEnum.BUSINESS_ERROR, "注册失败", 0, true);
+        }
+
     }
-    @PostMapping("/login.do")
-    public ResultModel<Collector> loginCollector(String phoneNumber,String password) throws BusinessException {
-        Collector result =  collectorService.loginCollector(phoneNumber,password);
+    @PostMapping("/loginCollector.do")
+    public ResultModel<Collector> loginCollector(String tel,String password) throws BusinessException {
+        Collector result =  collectorService.loginCollector(null,tel,password);
         return new ResultModel<>(CodeEnum.SUCCESS, "登录成功", result, true);
     }
     @PostMapping("/getCollectorById.do")

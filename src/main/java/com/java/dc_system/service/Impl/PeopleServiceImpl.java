@@ -78,4 +78,14 @@ public class PeopleServiceImpl implements IPeopleService {
             throw new BusinessException("被检测人员没有登录", CodeEnum.LOGIN_FAILED);
         }
     }
+
+    @Override
+    public People checkPeople(String idCard, String tel) throws BusinessException {
+        People people = peopleDao.checkPeople(idCard, tel);
+        if (people != null){
+            return people;
+        } else{
+            throw new BusinessException("被检测人员已经注册", CodeEnum.LOGIN_FAILED);
+        }
+    }
 }

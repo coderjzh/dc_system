@@ -25,5 +25,6 @@ public interface PeopleDao {
     int registerPeople(People model);
     //被检测人员登录
     People loginPeople(@Param("idCard")String idCard,@Param("tel")String tel);
-
+    //校验被检测人员的注册信息
+    People checkPeople(@Param("idCard")String idCard,@Param("tel")String tel);
 }

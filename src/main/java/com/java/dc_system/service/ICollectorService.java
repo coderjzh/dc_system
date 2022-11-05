@@ -16,7 +16,7 @@ public interface ICollectorService {
     //采集人员注册
     int registerCollector(Collector collector) throws BusinessException;
     //采集人员登录
-    Collector loginCollector(@Param("phoneNumber")String phoneNumber, @Param("password")String password) throws BusinessException;
+    Collector loginCollector(String idCard,String tel,String password) throws BusinessException;
     //获取所有采集人员信息
     List<Collector> getAllCollector() throws BusinessException;
     //通过Id查询采集人员信息

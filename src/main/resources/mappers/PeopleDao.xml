@@ -51,14 +51,10 @@
     <!--被检测人员登录-->
     <!--被检测人员的注册验证-->
     <select id="loginPeople" resultType="People">
-        select * from people
-        <where>
-            <if test="idCard != null and idCard != ''">
-                idCard = #{idCard}
-            </if>
-            <if test="tel != null and tel != ''">
-                and tel = #{tel}
-            </if>
-        </where>
+        select * from people idCard = #{idCard} and tel = #{tel}
+    </select>
+    <!--被检测人员的注册验证-->
+    <select id="checkPeople" resultType="People">
+        select * from people idCard = #{idCard} or tel = #{tel}
     </select>
 </mapper>

@@ -33,8 +33,14 @@ public class PeopleController {
 
     @PostMapping("/registerPeople.do")
     public ResultModel<Integer> registerPeople(@RequestBody People model) throws BusinessException {
-        int num = peopleService.registerPeople(model);
-        return new ResultModel<>(CodeEnum.SUCCESS, "成功添加被检测人员信息", num, true);
+        People people = peopleService.checkPeople(model.getIdCard(), model.getTel());
+        if (people == null){
+            int num = peopleService.registerPeople(model);
+            return new ResultModel<>(CodeEnum.SUCCESS, "成功添加被检测人员信息", num, true);
+        }else {
+            return new ResultModel<>(CodeEnum.BUSINESS_ERROR, "成功添加被检测人员失败", 0, true);
+        }
+
     }
 
     @PostMapping("/updatePeople.do")

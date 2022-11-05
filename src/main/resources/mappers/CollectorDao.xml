@@ -8,9 +8,20 @@
         insert into collector values(null , #{tel} ,#{name}  ,#{password} ,#{organizationId} ,#{idCard} ,#{registerTime} )
     </insert>
     <!--检测人员登录-->
+    <!--也是通过检验 检测人员是否注册过-->
     <select id="loginCollector" resultType="Collector">
         select * from collector
-        where tel = #{tel} and password =#{password}
+        <where>
+            <if test="idCard != null and idCard != ''">
+                 idCard = #{idCard}
+            </if>
+            <if test="tel != null and tel != ''">
+                or tel = #{tel}
+            </if>
+            <if test="password != null and password != ''">
+                and  password =#{password}
+            </if>
+        </where>
     </select>
     <!--获取所有的检测人员信息-->
     <select id="getAllCollector" resultType="Collector">

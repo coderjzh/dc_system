@@ -31,8 +31,8 @@ public class CollectorServiceImpl implements ICollectorService {
     }
 
     @Override
-    public Collector loginCollector(String phoneNumber, String password) throws BusinessException {
-        Collector collector = collectorDao.loginCollector(phoneNumber ,password);
+    public Collector loginCollector(String idCard, String tel, String password) throws BusinessException {
+        Collector collector = collectorDao.loginCollector(idCard ,tel ,password);
         if (collector!=null){
             return collector;
         }else {

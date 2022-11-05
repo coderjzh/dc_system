@@ -17,7 +17,7 @@ public interface CollectorDao {
     //采集人员注册
     int registerCollector(Collector collector);
     //采集人员登录
-    Collector loginCollector(@Param("tel")String tel,@Param("password")String password);
+    Collector loginCollector(@Param("idCard")String idCard,@Param("tel")String tel,@Param("password")String password);
     //获取所有采集人员信息
     List<Collector> getAllCollector();
     //通过Id查询采集人员信息
