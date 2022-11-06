@@ -28,6 +28,12 @@ public class BoxController {
     private IBoxService boxService;
     @Autowired
     private ITestTubeService testTubeService;
+
+    @PostMapping("/checkTestTubeId.do")
+    public Integer checkTestTubeId(){
+        return testTubeService.checkTestTube();
+    }
+
     @PostMapping("/insertBox.do")
     public ResultModel<Integer> insertBox(@RequestBody Box model) throws BusinessException {
         boxService.insertBox(model);

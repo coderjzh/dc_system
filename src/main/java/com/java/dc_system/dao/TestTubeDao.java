@@ -18,4 +18,6 @@ public interface TestTubeDao {
     List<TestTube> selectTestTube(TestTube testTube);
     //更新试管信息(封管)
     int updateTestTube(TestTube testTube);
+    //试管数量校验
+    Integer checkTestTube();
 }

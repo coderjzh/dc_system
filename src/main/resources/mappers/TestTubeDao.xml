@@ -73,7 +73,6 @@
             </trim>
         </where>
     </select>
-
     <!--更新试管信息-->
     <update id="updateTestTube" parameterType="TestTube">
         update testtube
@@ -82,4 +81,8 @@
         </set>
         where testTubeId = #{testTubeId}
     </update>
+    <!--查询试管数量-->
+    <select id="checkTestTube" resultType="integer">
+        select count(testTubeId) from testtube
+    </select>
 </mapper>

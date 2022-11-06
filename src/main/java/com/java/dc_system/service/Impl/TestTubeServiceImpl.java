@@ -31,4 +31,9 @@ public class TestTubeServiceImpl implements ITestTubeService {
     public int updateTestTube(TestTube testTube) {
         return testTubeDao.updateTestTube(testTube);
     }
+
+    @Override
+    public Integer checkTestTube() {
+        return testTubeDao.checkTestTube();
+    }
 }
