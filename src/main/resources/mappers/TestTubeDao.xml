@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dc_system.dao.TestTubeDao">
+
+    <sql id="insertTestTube">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            null ,
+           <if test="testTubeCode != null and testTubeCode != ''">
+               #{testTubeCode},
+           </if>
+            <if test="boxId != null">
+                #{boxId},
+            </if>
+            <if test="collectType != null">
+                #{collectType},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="testResult != null">
+                #{testResult},
+            </if>
+            <if test="openTime != null">
+                #{openTime},
+            </if>
+            <if test="closeTime != null">
+                #{closeTime},
+            </if>
+        </trim>
+    </sql>
+    <sql id="updateTestTube">
+        <trim suffix="," suffixOverrides=",">
+            <if test="testTubeCode != null and testTubeCode != ''">
+                testTubeCode = #{testTubeCode},
+            </if>
+            <if test="boxId != null">
+                boxId = #{boxId},
+            </if>
+            <if test="collectType != null">
+                collectType = #{collectType},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="testResult != null and testResult != ''">
+                testResult = #{testResult},
+            </if>
+            <if test="openTime != null">
+                openTime = #{openTime},
+            </if>
+            <if test="closeTime != null">
+                closeTime = #{closeTime},
+            </if>
+        </trim>
+    </sql>
+    <!--添加试管信息-->
+    <insert id="insertTestTube" parameterType="TestTube" useGeneratedKeys="true" keyProperty="testTubeId">
+        insert into testtube
+        <include refid="insertTestTube"/>
+    </insert>
+
+    <!--检索试管信息-->
+    <select id="selectTestTube" resultType="TestTube">
+        select * from testtube
+        <where>
+            <trim  prefixOverrides="or">
+                <if test="testTubeId != null">
+                    testTubeId = #{testTubeId}
+                </if>
+                <if test="boxId != null">
+                    or boxId = #{boxId}
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <!--更新试管信息-->
+    <update id="updateTestTube" parameterType="TestTube">
+        update testtube
+        <set>
+            <include refid="updateTestTube"/>
+        </set>
+        where testTubeId = #{testTubeId}
+    </update>
+</mapper>

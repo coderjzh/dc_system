@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dc_system.dao.BoxDao">
+    <sql id="insertBox">
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            null ,
+            <if test="boxCode != null and boxCode != ''">
+                #{boxCode},
+            </if>
+            <if test="status != null">
+                #{status},
+            </if>
+            <if test="collectorId != null">
+                #{collectorId},
+            </if>
+            <if test="transferId != null">
+                #{transferId},
+            </if>
+            <if test="testerId">
+               #{testerId},
+            </if>
+            <if test="pointId != null">
+                #{pointId},
+            </if>
+            <if test="testOrganizationId != null">
+                #{testOrganizationId},
+            </if>
+            <if test="openTime != null">
+               #{openTime},
+            </if>
+            <if test="closeTime != null">
+               #{closeTime},
+            </if>
+        </trim>
+    </sql>
+    <sql id="updateBox">
+        <trim suffix="," suffixOverrides=",">
+            <if test="boxCode != null and boxCode != ''">
+                boxCode = #{boxCode},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="collectorId != null">
+                collectorId = #{collectorId},
+            </if>
+            <if test="transferId != null">
+                transferId = #{transferId},
+            </if>
+            <if test="testerId">
+                testerId = #{testerId},
+            </if>
+            <if test="pointId != null">
+                pointId = #{pointId},
+            </if>
+            <if test="testOrganizationId != null">
+                testOrganizationId = #{testOrganizationId},
+            </if>
+            <if test="openTime != null">
+                openTime = #{openTime},
+            </if>
+            <if test="closeTime != null">
+                closeTime = #{closeTime},
+            </if>
+        </trim>
+    </sql>
+    <sql id="getBox">
+        <trim prefix="where "  suffixOverrides="and | or">
+            <if test="boxId != null">
+                boxId = #{boxId} or
+            </if>
+            <if test="boxCode != null and boxCode != ''">
+                boxCode = #{boxCode} and
+            </if>
+            <if test="status != null">
+                status = #{status} and
+            </if>
+            <if test="collectorId != null">
+                collectorId = #{collectorId} and
+            </if>
+            <if test="transferId != null">
+                transferId = #{transferId} and
+            </if>
+            <if test="testerId">
+                testerId = #{testerId} and
+            </if>
+            <if test="pointId != null">
+                pointId = #{pointId} and
+            </if>
+            <if test="testOrganizationId != null">
+                testOrganizationId = #{testOrganizationId} and
+            </if>
+            <if test="openTime != null">
+                openTime = #{openTime} and
+            </if>
+            <if test="closeTime != null">
+                closeTime = #{closeTime}
+            </if>
+        </trim>
+    </sql>
+    <!--添加转运箱信息(开箱)-->
+    <insert id="insertBox" parameterType="Box" useGeneratedKeys="true" keyProperty="boxId">
+        insert into box
+        <include refid="insertBox"/>
+    </insert>
+    <!--更新转运箱信息(封箱)-->
+    <update id="updateBox" parameterType="Box">
+        update box
+        <set>
+            <include refid="updateBox"/>
+        </set>
+        <where>
+            <if test="boxId != null">
+                boxId = #{boxId}
+            </if>
+        </where>
+    </update>
+    <!--获取转运箱信息(查看转运箱信息)-->
+    <select id="getBox" resultType="Box">
+        select * from box
+        <include refid="getBox"/>
+    </select>
+</mapper>
